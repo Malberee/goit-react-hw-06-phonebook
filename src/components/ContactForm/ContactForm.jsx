@@ -2,11 +2,15 @@ import { useState } from 'react'
 import { FaPhone, FaUser } from 'react-icons/fa'
 import PropTypes from 'prop-types'
 import { addContact } from '../../redux/contactsSlice'
+import { getContacts } from '../../redux/selectors'
 import { Form, FormIcon } from './ContactForm.styled'
 import Input from '../Input'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 const ContactForm = () => {
 	const dispatch = useDispatch()
+
+	const contacts = useSelector(getContacts)
+
 	const handleAdd = (contact) => dispatch(addContact(contact))
 
 	const [name, setName] = useState('')
@@ -20,6 +24,13 @@ const ContactForm = () => {
 
 	const onSubmit = (e) => {
 		e.preventDefault()
+
+		const alreadyExists = contacts.some((contact) => contact.name.toLowerCase() === name.toLowerCase())
+
+		if (alreadyExists) {
+			alert(`${name} is already in contacts`)
+			return
+		}
 
 		handleAdd({ name: name, number: number })
 
