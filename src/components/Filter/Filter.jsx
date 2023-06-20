@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFilter } from '../../redux/selectors'
+import { selectFilter } from '../../redux/selectors'
 import { setFilter } from '../../redux/filterSlice'
 import Input from '../Input'
 
 const Filter = () => {
-	const filter = useSelector(getFilter)
+	const filter = useSelector(selectFilter)
 
 	const dispatch = useDispatch()
 
-	const onFilterChange = ({target}) => dispatch(setFilter(target.value))
+	const onFilterChange = ({ target }) => dispatch(setFilter(target.value))
 
 	return (
 		<label>
