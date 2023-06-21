@@ -19,7 +19,7 @@ const ContactList = () => {
 	return (
 		<>
 			{isLoading && <p>Loading...</p>}
-			{error && <p>{error}</p>}
+			{error && <p>{console.log(error) }</p>}
 			{!isLoading && !error && filteredContacts.length < 1 && (
 				<p>Ничё не нашли</p>
 			)}

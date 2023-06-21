@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { FaPhone, FaUser } from 'react-icons/fa'
-import PropTypes from 'prop-types'
 import { addContact } from '../../redux/operations'
 import { selectContacts } from '../../redux/selectors'
 import { Form, FormIcon } from './ContactForm.styled'
@@ -10,8 +9,6 @@ const ContactForm = () => {
 	const dispatch = useDispatch()
 
 	const contacts = useSelector(selectContacts)
-
-	const handleAdd = (contact) => dispatch(addContact(contact))
 
 	const [name, setName] = useState('')
 	const [number, setNumber] = useState('')
@@ -33,8 +30,7 @@ const ContactForm = () => {
 			alert(`${name} is already in contacts`)
 			return
 		}
-
-		handleAdd({ name: name, number: number })
+		dispatch(addContact({ name: name, number: number }))
 
 		setName('')
 		setNumber('')

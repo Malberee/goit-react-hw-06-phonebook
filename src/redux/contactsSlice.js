@@ -20,7 +20,7 @@ const handleSuccessFetchContacts = (_, action) => ({
 })
 
 const handleSuccessAddContact = (state, action) => ({
-	items: [...state, action.payload],
+	items: [...state.items, action.payload],
 	isLoading: false,
 	error: null,
 })
@@ -45,7 +45,7 @@ const contactsSlice = createSlice({
 
 		[addContact.pending]: handlePending,
 		[addContact.fulfilled]: handleSuccessAddContact,
-		[addContact.fulfilled]: handleRejected,
+		[addContact.rejected]: handleRejected,
 
 		[deleteContact.pending]: handlePending,
 		[deleteContact.fulfilled]: handleSuccessDeleteContact,
